@@ -79,3 +79,9 @@ input[type=search]{flex:1 1 240px}
 .hidden{display:none !important}
 .foot{color:var(--muted);font-size:12px;text-align:center;padding:24px 16px}
 @media print{.site-head,.copy,.toolbar,.lock form{display:none}.card{break-inside:avoid}}
+.alert{border-color:var(--lock-line);background:var(--lock-bg)}
+.tbl{border-collapse:collapse;width:100%;margin:8px 0;background:var(--card)}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;font-size:14px}
+.tbl th{width:34%;font-weight:600;background:var(--code)}
+.tbl td{word-break:break-all}
+h2[id],h1{scroll-margin-top:110px}
