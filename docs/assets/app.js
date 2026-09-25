@@ -63,7 +63,15 @@
     chips.querySelectorAll('.chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
     filter();
   });
-  if (q && /^#\d+$/.test(location.hash)) { q.value = location.hash.slice(1); filter(); }
+  // 「#12」形式のリンクは、絞り込まずに No.12 の位置へ移動して目立たせる
+  if (/^#\d+$/.test(location.hash)) {
+    const target = document.getElementById('n' + location.hash.slice(1));
+    if (target) {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      location.replace('#' + target.id);
+      window.addEventListener('load', function () { target.scrollIntoView(); });
+    }
+  }
 
   // ---- 解答・解説：講師の合図で開く -----------------------------------------
   // 解答はページ内で暗号化されている。講師が release.json に鍵を書き込むと、
