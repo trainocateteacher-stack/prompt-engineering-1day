@@ -1,2 +1,1 @@
-"# prompt-engineering-1day" 
-"# prompt-engineering-1day" 
+# トレノケート株式会社　１日でまなぶプロンプトエンジニアリング　公開用
