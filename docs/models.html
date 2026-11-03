@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIモデル一覧｜1日で学ぶプロンプトエンジニアリング</title>
+<meta name="description" content="主要AIサービスの無償版・有償版・モデル・特徴。2026年11月4日確認、公式出典付き。">
+<meta name="release-source" content="https://api.github.com/repos/trainocateteacher-stack/prompt-engineering-1day/contents/release.json https://raw.githubusercontent.com/trainocateteacher-stack/prompt-engineering-1day/main/release.json">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="index.html">1日で学ぶプロンプトエンジニアリング</a>
+<nav class="nav"><a href="index.html">ホーム</a><a href="guide.html">受講案内</a><a href="prompts.html">プロンプト集</a><a href="cheatsheet.html">逆引き</a><a href="models.html" aria-current="page">AIモデル一覧</a><a href="services.html">サービス別</a><a href="exercises.html">演習</a><a href="summary.html">要点まとめ</a><a href="references.html">参考サイト</a></nav>
+</div></header>
+<main><div class="wrap model-wrap">
+<h1>AIモデル一覧</h1>
+<p class="lead">主要4サービスの無償版・有償版と特徴。<strong>確認日：2026年11月4日</strong></p>
+<p>サービスは利用する窓口、モデルは回答を生成する仕組みです。以下は公式資料で確認した提供例です。利用できるモデル・上限は、契約、アカウント、管理者設定、提供時期によって異なります。</p>
+<div class="toolbar"><button class="btn primary" type="button" data-copy-all="#catalog-copy">比較表をテキストでコピー</button><button class="btn" type="button" data-download="#catalog-copy" data-filename="AIモデル一覧_2026-11-04.txt">テキストで保存</button></div>
+<style>
+.model-wrap{max-width:1240px} .model-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:12px 0}
+.model-table{border-collapse:collapse;width:100%;min-width:1000px;background:var(--card);font-size:14px;line-height:1.7}
+.model-table caption{text-align:left;font-weight:700;padding:12px}.model-table th,.model-table td{padding:15px 14px;vertical-align:top;text-align:left;border-top:1px solid var(--line)}
+.model-table thead th{background:#eb491d;color:#fff;border-color:#f47b58}.model-table tbody th{font-size:16px;width:13%}.model-table td:nth-child(2){width:9%}.model-table td:nth-child(3){width:23%}.model-table td:nth-child(4){width:28%}.model-table td:nth-child(5){width:27%}
+.model-table tbody tr:nth-child(odd){background:color-mix(in srgb,var(--card) 92%,#eb491d 8%)}.model-table p{margin:0 0 9px}.model-table small{display:block;color:var(--muted);font-size:12px}.source-links{white-space:nowrap;font-size:12px}.model-tag{font-weight:700}.copy-plain{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}.model-notes li{margin:8px 0}.source-url{overflow-wrap:anywhere}
+@media print{.model-table{min-width:0;font-size:10px}.model-table td,.model-table th{padding:7px}.model-scroll{overflow:visible}.toolbar{display:none}}
+</style>
+<p class="sub">スマートフォンでは表を横にスクロールできます。モデル名の赤字は使わず、無償／有償を列で分けています。</p>
+<div class="model-scroll" role="region" aria-label="AIモデル比較表" tabindex="0"><table class="model-table">
+<caption>サービス・開発元・無償版・有償版・特徴</caption>
+<thead><tr><th scope="col">サービス名</th><th scope="col">開発元</th><th scope="col">無償版</th><th scope="col">有償版</th><th scope="col">特徴・主な用途</th></tr></thead>
+<tbody>
+<tr><th scope="row">ChatGPT</th><td>OpenAI</td>
+<td><p><span class="model-tag">Free</span><br>Chat：GPT-5.6 Luna</p><p>Work／Codex：GPT-6 Luna<small>デスクトップでの提供。段階的提供・利用条件あり。</small></p></td>
+<td><p><span class="model-tag">Plus／Proなど</span><br>Chat：GPT-5.6 Sol</p><p>Work／Codex：GPT-6.1 Sol、GPT-6.1 Terra、GPT-6 Astraなど<small>プラン・機能・管理者設定で選択肢が異なります。Chat用モデルと混同しないでください。</small></p></td>
+<td><p>文章の作成・要約、情報整理、調査など。Work／Codexでは、資料作成やコード・画面操作を伴う作業にも対応。</p><p class="source-links"><a href="#source-openai-chat">Chatの出典</a> ／ <a href="#source-openai-work">Workの出典</a></p></td></tr>
+<tr><th scope="row">Microsoft 365<br>Copilot Chat</th><td>Microsoft<br><small>搭載モデルの開発元とは別です。</small></td>
+<td><p><span class="model-tag">対象のMicrosoft 365契約に追加料金なし</span></p><p>GPT系モデルへの標準アクセス。モデルは処理に応じて選択されます。</p><small>Microsoft 365自体が無料という意味ではありません。</small></td>
+<td><p><span class="model-tag">Microsoft 365 Copilotライセンス</span></p><p>モデルへの優先アクセス。会議・メール・チャット・ファイル等の業務データを使う機能を拡張。</p><small>公式のモデル提供例：GPT-5.5 Instant／Thinking。全契約で同じモデルを選べる保証ではありません。</small></td>
+<td><p>Microsoft 365の業務環境と連携。Word・Excel・PowerPoint・Outlook・Teamsなどでの文書作成や整理を支援。</p><p class="source-links"><a href="#source-copilot">契約の出典</a> ／ <a href="#source-copilot-models">モデルの出典</a></p></td></tr>
+<tr><th scope="row">Gemini</th><td>Google</td>
+<td><p><span class="model-tag">無料</span><br>Flash-Lite</p><small>公式の日本語プラン表の表記を採用。版番号がない箇所は推測で補っていません。</small></td>
+<td><p><span class="model-tag">Google AI Plus</span>：Flash</p><p><span class="model-tag">Google AI Pro／Ultra</span>：Gemini 4 Argon、Pro、Flash</p><small>上位プランで利用枠・機能が拡張。Pro／Flashの版番号はプラン表で省略されています。</small></td>
+<td><p>文章・画像・音声などを扱い、調査や資料整理を支援。有償プランではGmail・Googleドキュメント等との連携も利用可能。</p><p class="source-links"><a href="#source-gemini">日本向けプランの出典</a></p></td></tr>
+<tr><th scope="row">Claude</th><td>Anthropic</td>
+<td><p><span class="model-tag">Free</span><br>Sonnet／Haiku</p><small>現行のモデル系列：Sonnet 5.5、Haiku 5.5。実際の割り当てや選択肢は画面で確認。</small></td>
+<td><p><span class="model-tag">Pro／Max／Ultraなど</span><br>Sonnet／Haikuに加え、Opus 5.5、Fable 5.1など</p><small>Fable：Proは従量クレジット。Max／Ultraは週の利用枠の一部に含まれます。</small></td>
+<td><p>文書の読解・執筆、コード作成、Artifactsによる成果物作成など。Sonnetは速度と能力のバランス、Haikuは軽量処理、Opus／Fableは高度な作業向け。</p><p class="source-links"><a href="#source-claude">プランの出典</a> ／ <a href="#source-claude-models">モデルの出典</a></p></td></tr>
+</tbody></table></div>
+<div id="catalog-copy" class="copy-plain" aria-hidden="true">AIモデル一覧（2026年11月4日確認）
+サービス名｜開発元｜無償版｜有償版｜特徴
+ChatGPT｜OpenAI｜Free：ChatはGPT-5.6 Luna。Work/CodexはデスクトップでGPT-6 Luna（提供条件あり）｜Plus/Pro等：ChatはGPT-5.6 Sol。Work/CodexはGPT-6.1 Sol・Terra、GPT-6 Astra等（契約・機能で異なる）｜文章作成・要約・調査、Work/Codexで資料作成・コード・画面操作。
+Microsoft 365 Copilot Chat｜Microsoft｜対象のMicrosoft 365契約に追加料金なし。GPT系モデルへの標準アクセス｜Copilotライセンスで優先アクセス・業務データ連携を拡張。提供モデル例GPT-5.5 Instant/Thinking（全契約共通ではない）｜Microsoft 365の業務環境と連携。
+Gemini｜Google｜Flash-Lite｜AI Plus：Flash。AI Pro/Ultra：Gemini 4 Argon・Pro・Flash｜文章・画像・音声、調査、Googleアプリ連携。
+Claude｜Anthropic｜Sonnet/Haiku（現行系列5.5、割り当ては画面で確認）｜Pro/Max/Ultra等：Opus 5.5・Fable 5.1等も利用可能。ProのFableは従量クレジット｜文書読解・執筆・コード・Artifacts。
+注意：サービスとモデルは別です。利用枠・モデル・機能は変更されます。無料版にも上限があります。APIのモデル一覧とは別です。
+公式出典：
+OpenAI Chat：https://learn.chatgpt.com/docs/whats-new
+OpenAI Work/Codex：https://learn.chatgpt.com/docs/models
+Copilot：https://support.microsoft.com/en-us/microsoft-365-copilot/how-copilot-chat-works-with-and-without-a-microsoft-365-copilot-license
+Copilotモデル：https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes
+Gemini：https://gemini.google/jp/subscriptions/?hl=ja
+Claude：https://claude.com/pricing
+Claude Fable：https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan</div>
+<h2>表の見方</h2><ul class="model-notes">
+<li><strong>通常チャットと作業用機能を区別：</strong>ChatGPTのChat、Work、Codexでは利用モデルが異なります。GPT-6.1があるから、通常チャットでも同じモデルとは限りません。</li>
+<li><strong>Microsoft 365の「追加料金なし」：</strong>対象契約が前提です。個人向けMicrosoft Copilotとも別のサービス条件です。</li>
+<li><strong>モデル名と利用枠は別：</strong>同じモデル名でも、無料・有料で使える回数や機能が異なる場合があります。</li>
+<li><strong>比較の範囲：</strong>一般向けのチャットサービスが中心です。APIだけで利用できるモデル、限定プレビュー、各社の全モデルを網羅した一覧ではありません。相対的な性能順位を示すものでもありません。</li>
+<li><strong>確認できた情報：</strong>ChatGPTのChat欄は、公式更新情報の2026年8月6日掲載内容を確認したものです。Work／Codex欄は現行のモデル案内を参照しています。画面の表示が異なる場合は、利用中のアカウントの表示と公式案内を優先してください。</li>
+</ul>
+<h2>公式情報・コピー用URL</h2>
+<section id="source-openai-chat" class="card"><h3>OpenAI：通常チャットのモデル</h3><p>「Choose how GPT-5.6 responds in ChatGPT」（2026年8月6日掲載）。Free／GoのLuna、Plus／ProのSolを確認。</p><div class="box"><pre class="source-url">https://learn.chatgpt.com/docs/whats-new</pre><button class="copy" type="button">コピー</button></div><p><a href="https://learn.chatgpt.com/docs/whats-new" target="_blank" rel="noopener">公式情報を開く</a></p></section>
+<section id="source-openai-work" class="card"><h3>OpenAI：Work／Codexのモデル</h3><p>現行モデルとプラン・環境による提供条件。Chatとの違いを確認。</p><div class="box"><pre class="source-url">https://learn.chatgpt.com/docs/models</pre><button class="copy" type="button">コピー</button></div><p><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">モデル案内</a> ／ <a href="https://learn.chatgpt.com/docs/pricing" target="_blank" rel="noopener">プラン・利用条件</a></p></section>
+<section id="source-copilot" class="card"><h3>Microsoft：Copilotライセンスによる違い</h3><div class="box"><pre class="source-url">https://support.microsoft.com/en-us/microsoft-365-copilot/how-copilot-chat-works-with-and-without-a-microsoft-365-copilot-license</pre><button class="copy" type="button">コピー</button></div><p><a href="https://support.microsoft.com/en-us/microsoft-365-copilot/how-copilot-chat-works-with-and-without-a-microsoft-365-copilot-license" target="_blank" rel="noopener">標準／優先アクセスと業務データ連携を確認</a></p></section>
+<section id="source-copilot-models" class="card"><h3>Microsoft：提供モデルの更新情報</h3><div class="box"><pre class="source-url">https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes</pre><button class="copy" type="button">コピー</button></div><p><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes" target="_blank" rel="noopener">GPT-5.5 Instant／Thinking等の提供例</a></p></section>
+<section id="source-gemini" class="card"><h3>Google：日本向けGeminiプラン</h3><div class="box"><pre class="source-url">https://gemini.google/jp/subscriptions/?hl=ja</pre><button class="copy" type="button">コピー</button></div><p><a href="https://gemini.google/jp/subscriptions/?hl=ja" target="_blank" rel="noopener">モデル・プラン表</a> ／ <a href="https://support.google.com/gemini/answer/16275805?hl=ja" target="_blank" rel="noopener">利用上限</a></p></section>
+<section id="source-claude" class="card"><h3>Anthropic：Claudeのプランとモデル系列</h3><div class="box"><pre class="source-url">https://claude.com/pricing</pre><button class="copy" type="button">コピー</button></div><p><a href="https://claude.com/pricing" target="_blank" rel="noopener">Free／Pro／Max／Ultraのモデル提供範囲</a></p></section>
+<section id="source-claude-models" class="card"><h3>Anthropic：現行モデルとFableの条件</h3><p><a href="https://www.anthropic.com/claude/sonnet" target="_blank" rel="noopener">Sonnet 5.5</a> ／ <a href="https://www.anthropic.com/claude/haiku" target="_blank" rel="noopener">Haiku 5.5</a></p><div class="box"><pre class="source-url">https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan</pre><button class="copy" type="button">コピー</button></div><p><a href="https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan" target="_blank" rel="noopener">Fableの対象プラン・従量クレジット</a></p></section>
+</div></main>
+<footer class="foot">講師の画面と結果が違っても問題ありません。AIの答えは毎回少しずつ変わります。</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
