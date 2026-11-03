@@ -15,7 +15,7 @@
 </div></header>
 <main><div class="wrap model-wrap">
 <h1>AIモデル一覧</h1>
-<p class="lead">主要4サービスの無償版・有償版と特徴。<strong>確認日：2026年11月4日</strong></p>
+<p class="sub"><a href="#benchmarks">ベンチマーク結果・速度と推論量の図へ ↓</a></p><p class="lead">主要4サービスの無償版・有償版と特徴。<strong>確認日：2026年11月4日</strong></p>
 <p>サービスは利用する窓口、モデルは回答を生成する仕組みです。以下は公式資料で確認した提供例です。利用できるモデル・上限は、契約、アカウント、管理者設定、提供時期によって異なります。</p>
 <div class="toolbar"><button class="btn primary" type="button" data-copy-all="#catalog-copy">比較表をテキストでコピー</button><button class="btn" type="button" data-download="#catalog-copy" data-filename="AIモデル一覧_2026-11-04.txt">テキストで保存</button></div>
 <style>
@@ -63,6 +63,54 @@ Copilotモデル：https://learn.microsoft.com/en-us/microsoft-365/copilot/relea
 Gemini：https://gemini.google/jp/subscriptions/?hl=ja
 Claude：https://claude.com/pricing
 Claude Fable：https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan</div>
+
+
+<section id="benchmarks" aria-labelledby="benchmark-heading">
+<link rel="stylesheet" href="assets/benchmarks.css">
+<h2 id="benchmark-heading">ベンチマーク結果と、速度・推論量の関係</h2>
+<p><strong>Artificial Analysisの公開測定値／2026年11月4日閲覧。</strong>総合指数は同じ版（v5.0）にそろえています。</p>
+<div class="goal">考える量を増やすと、得点と待ち時間が一緒に増える場合があります。ただし、<strong>「遅いほど賢い」「出力が速いほど推論が弱い」という一律の法則ではありません。</strong></div>
+<p>ここでの結果は<strong>モデルAPI</strong>の測定です。上の表の無料／有料プラン、そのサービス全体の速さを示すものではありません。</p>
+<figure class="bench-figure" aria-labelledby="bench-chart-title">
+<h3 id="bench-chart-title">同じモデルで、推論量を変えたとき</h3>
+<p class="sub">まずGPT-6.1 SolのLow → High → Xhigh → Maxを比較。点は公開測定値です。出典は下の表から確認できます。</p>
+<div class="bench-controls">
+<label>比較する対象<select id="bench-scope"><option value="sol">同じモデルの推論量（Sol）</option><option value="all">掲載した全モデル・設定</option></select></label>
+<label>横軸の指標<select id="bench-metric"><option value="wait">回答開始までの待ち時間（秒）</option><option value="speed">出力速度（token/s）</option></select></label>
+</div>
+<div id="bench-chart" aria-label="速度と総合指数の散布図"></div>
+<div id="bench-legend" class="bench-legend" aria-label="モデル・設定を選ぶ"></div>
+<p id="bench-detail" class="bench-detail" aria-live="polite"></p>
+<figcaption id="bench-caption">左ほど回答開始が速く、上ほど総合指数が高い位置です。総合指数は推論専用の得点ではありません。</figcaption>
+<noscript><p>図の操作にはJavaScriptが必要です。測定値は下の表でも確認できます。</p></noscript>
+</figure>
+<h3>測定値の一覧</h3><p class="sub">推論設定のMaxは、Claude Max等の有料プラン名とは別です。</p>
+<div class="toolbar"><button class="btn" type="button" data-copy-all="#benchmark-copy">測定値と出典をコピー</button></div>
+<div class="bench-scroll" role="region" aria-label="ベンチマーク測定値" tabindex="0"><table class="bench-table">
+<caption>モデルと推論設定を含めた測定値</caption><thead><tr><th scope="col">モデル</th><th scope="col">推論設定</th><th scope="col">総合指数<br>高いほどよい</th><th scope="col">HLE-Diamond<br>高いほどよい</th><th scope="col">回答開始まで<br>短いほど速い</th><th scope="col">出力速度<br>token/s</th><th scope="col">出典</th></tr></thead><tbody><tr id="bench-A"><th scope="row">A　GPT-6.1 Sol</th><td>Low</td><td>35</td><td>38%</td><td>2.51秒</td><td>62</td><td><a href="#bench-s1">出典</a></td></tr><tr id="bench-B"><th scope="row">B　GPT-6.1 Sol</th><td>High</td><td>50</td><td>52%</td><td>69.58秒</td><td>71</td><td><a href="#bench-s1">出典</a></td></tr><tr id="bench-C"><th scope="row">C　GPT-6.1 Sol</th><td>Xhigh</td><td>52</td><td>56%</td><td>153.30秒</td><td>78</td><td><a href="#bench-s2">出典</a></td></tr><tr id="bench-D"><th scope="row">D　GPT-6.1 Sol</th><td>Max</td><td>55</td><td>59%</td><td>307.83秒</td><td>93</td><td><a href="#bench-s3">出典</a></td></tr><tr id="bench-E"><th scope="row">E　Gemini 4 Argon</th><td>High</td><td>50</td><td>57%</td><td>40.47秒</td><td>83</td><td><a href="#bench-s3">出典</a></td></tr><tr id="bench-F"><th scope="row">F　Claude Sonnet 5.5</th><td>Max, Default Fallback</td><td>54</td><td>53%</td><td>456.04秒</td><td>139</td><td><a href="#bench-s4">出典</a></td></tr></tbody></table></div>
+<div id="benchmark-copy" class="copy-plain" aria-hidden="true">ベンチマーク結果（2026年11月4日閲覧）
+Artificial Analysis Intelligence Index v5.0。APIの公開測定値。チャットサービス・無料/有料プランの評価ではありません。
+ID｜モデル｜推論設定｜総合指数｜HLE-Diamond（％）｜回答開始まで（秒）｜出力速度（token/s）｜出典
+A｜GPT-6.1 Sol｜Low｜35｜38｜2.51｜62｜https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-high-vs-gpt-6-1-sol-low
+B｜GPT-6.1 Sol｜High｜50｜52｜69.58｜71｜https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-high-vs-gpt-6-1-sol-low
+C｜GPT-6.1 Sol｜Xhigh｜52｜56｜153.30｜78｜https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-high-vs-gpt-6-1-sol-xhigh
+D｜GPT-6.1 Sol｜Max｜55｜59｜307.83｜93｜https://artificialanalysis.ai/models/comparisons/gemini-4-argon-vs-gpt-6-1-sol
+E｜Gemini 4 Argon｜High｜50｜57｜40.47｜83｜https://artificialanalysis.ai/models/comparisons/gemini-4-argon-vs-gpt-6-1-sol
+F｜Claude Sonnet 5.5｜Max, Default Fallback｜54｜53｜456.04｜139｜https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-vs-claude-sonnet-5-5</div>
+<h3>数字を読むときのポイント</h3>
+<ul class="model-notes">
+<li><strong>総合指数：</strong>Artificial Analysis Intelligence Index v5.0。知識業務・コード・科学・一般分野をまとめた指数です。50は「正答率50％」ではありません。主に英語の評価で、日本語業務の成績を直接保証しません。</li>
+<li><strong>HLE-Diamond：</strong>高度な知識と推論を問う個別テストの成績。総合指数とは別の尺度です。</li>
+<li><strong>待ち時間と出力速度：</strong>回答開始までは、入力処理や考える時間も含みます。出力速度は文章が流れる速さで、読み終わるまでの総時間とは別です。tokenは文字数と同じ単位ではありません。</li>
+<li><strong>図から分かること：</strong>SolのLowからHighでは得点が上がり、回答開始までの待ち時間も増えています。一方、出力速度はHighのほうが高く、「速度」の定義で見え方が変わります。</li>
+<li><strong>全モデルの比較：</strong>同じ版の指数を並べていますが、各社の推論設定・フォールバック条件は同一ではありません。得点と速度は別のテストで測られています。点を結んだ普遍的なトレードオフ曲線とは扱いません。</li>
+<li><strong>掲載範囲：</strong>モデル一覧に関連する6条件を抜粋。Copilot Chatは搭載モデル・処理経路・参照資料が変わるため、サービス全体へ単一の点数を付けていません。未掲載モデルの成績を推測で補っていません。</li>
+<li><strong>更新：</strong>閲覧時点の公開値を転記しています。API速度は接続先・混雑・入力長で変動し、出典の表示値も更新されます。小数点差を絶対的な優劣とは見なさず、実際の仕事でも試してください。</li>
+</ul>
+<h3>ベンチマークの出典・測定方法</h3><ul class="bench-sources"><li id="bench-s1"><a href="https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-high-vs-gpt-6-1-sol-low" target="_blank" rel="noopener">Sol High／Low</a></li><li id="bench-s2"><a href="https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-high-vs-gpt-6-1-sol-xhigh" target="_blank" rel="noopener">Sol High／Xhigh</a></li><li id="bench-s3"><a href="https://artificialanalysis.ai/models/comparisons/gemini-4-argon-vs-gpt-6-1-sol" target="_blank" rel="noopener">Gemini High／Sol Max</a></li><li id="bench-s4"><a href="https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-vs-claude-sonnet-5-5" target="_blank" rel="noopener">Sol Max／Sonnet Max</a></li><li><a href="https://artificialanalysis.ai/methodology/intelligence-benchmarking" target="_blank" rel="noopener">総合指数v5.0・個別テストの評価方法</a></li><li><a href="https://artificialanalysis.ai/methodology/performance-benchmarking" target="_blank" rel="noopener">API速度・待ち時間の測定方法</a>（標準表示は約10,000入力tokenの条件。通常は過去72時間の中央値を使用）</li></ul>
+<script id="benchmark-data" type="application/json">[{"id":"A","family":"sol","model":"GPT-6.1 Sol","setting":"Low","index":35,"hle":38,"wait":2.51,"speed":62,"source":"s1"},{"id":"B","family":"sol","model":"GPT-6.1 Sol","setting":"High","index":50,"hle":52,"wait":69.58,"speed":71,"source":"s1"},{"id":"C","family":"sol","model":"GPT-6.1 Sol","setting":"Xhigh","index":52,"hle":56,"wait":153.3,"speed":78,"source":"s2"},{"id":"D","family":"sol","model":"GPT-6.1 Sol","setting":"Max","index":55,"hle":59,"wait":307.83,"speed":93,"source":"s3"},{"id":"E","family":"gemini","model":"Gemini 4 Argon","setting":"High","index":50,"hle":57,"wait":40.47,"speed":83,"source":"s3"},{"id":"F","family":"claude","model":"Claude Sonnet 5.5","setting":"Max, Default Fallback","index":54,"hle":53,"wait":456.04,"speed":139,"source":"s4"}]</script>
+<script src="assets/benchmarks.js" defer></script>
+</section>
 <h2>表の見方</h2><ul class="model-notes">
 <li><strong>通常チャットと作業用機能を区別：</strong>ChatGPTのChat、Work、Codexでは利用モデルが異なります。GPT-6.1があるから、通常チャットでも同じモデルとは限りません。</li>
 <li><strong>Microsoft 365の「追加料金なし」：</strong>対象契約が前提です。個人向けMicrosoft Copilotとも別のサービス条件です。</li>
