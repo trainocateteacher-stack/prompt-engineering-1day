@@ -3,10 +3,11 @@
 
   // ---- コピー -------------------------------------------------------------
   async function copyText(text) {
-    try { await navigator.clipboard.writeText(text); return; } catch (e) { /* fallback */ }
+    try { await navigator.clipboard.writeText(text); return true; } catch (e) { /* fallback */ }
     const t = document.createElement('textarea');
     t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
-    document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove();
+    document.body.appendChild(t); t.select();
+    try { return document.execCommand('copy'); } finally { t.remove(); }
   }
   function flash(btn, label) {
     const orig = btn.dataset.label || btn.textContent;
@@ -20,6 +21,21 @@
       .map(function (el) { return el.textContent; }).join('\n\n');
   }
   document.addEventListener('click', async function (e) {
+    const editorButton = e.target.closest('[data-copy-editor]');
+    if (editorButton) {
+      const editor = document.getElementById(editorButton.dataset.copyEditor);
+      const status = document.getElementById(editorButton.dataset.copyEditor + '-status');
+      if (!editor || !editor.value.trim()) return;
+      try {
+        const ok = await copyText(editor.value);
+        if (!ok) throw new Error('copy failed');
+        flash(editorButton, 'コピーしました');
+        if (status) status.textContent = 'コピーしました。AIに貼り付けて使えます。';
+      } catch (err) {
+        if (status) status.textContent = 'コピーできませんでした。入力欄の文章を選択してコピーしてください。';
+      }
+      return;
+    }
     const c = e.target.closest('.copy');
     if (c) {
       const pre = c.closest('.box').querySelector('pre');
@@ -34,6 +50,18 @@
       a.href = URL.createObjectURL(blob); a.download = dl.dataset.filename || 'download.txt';
       document.body.appendChild(a); a.click(); a.remove();
     }
+  });
+
+  document.querySelectorAll('[data-copy-editor]').forEach(function (button) {
+    const editor = document.getElementById(button.dataset.copyEditor);
+    if (!editor) return;
+    function update() {
+      button.disabled = !editor.value.trim();
+      const status = document.getElementById(editor.id + '-status');
+      if (status) status.textContent = '';
+    }
+    editor.addEventListener('input', update);
+    update();
   });
 
   // ---- 検索・章の絞り込み（プロンプト集） ---------------------------------
