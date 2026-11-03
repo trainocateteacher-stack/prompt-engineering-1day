@@ -7,7 +7,7 @@
   const legend=root.querySelector('#bench-legend'),detail=root.querySelector('#bench-detail'),caption=root.querySelector('#bench-caption'),missing=root.querySelector('#bench-unscored');
   let selected='B';
   const ns='http://www.w3.org/2000/svg',colors={sol:'var(--accent)',openai:'var(--accent)',gemini:'#b75b08',claude:'#9456b7'};
-  const number=(v,suffix='')=>Number.isFinite(v)?v.toLocaleString('ja-JP',{maximumFractionDigits:2})+suffix:'未公表';
+  const number=(v,suffix='')=>Number.isFinite(v)?v.toLocaleString('ja-JP',{maximumFractionDigits:2})+suffix:'参照先で確認できず';
   const name=d=>d.plot_name||(d.family==='sol'?`GPT-6.1 Sol (${d.setting})`:d.model.replace('Claude ',''));
   function make(tag,attrs,text){const el=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs||{}))el.setAttribute(k,String(v));if(text!==undefined)el.textContent=text;return el;}
   function choose(id){selected=id;draw();}
@@ -58,7 +58,7 @@
     });
     missing.replaceChildren();
     if(unscored.length){
-      const heading=document.createElement('h4');heading.textContent=`${yf==='index'?'総合指数 v5.0':'HLE-Diamond'}未公表：速度のみ表示（${unscored.length}条件）`;missing.append(heading);
+      const heading=document.createElement('h4');heading.textContent=`${yf==='index'?'総合指数 v5.0':'HLE-Diamond'}を参照先で確認できず：速度のみ表示（${unscored.length}条件）`;missing.append(heading);
       const note=document.createElement('p');note.className='sub';note.textContent='得点を0にせず、この欄でモデル名と確認できた速度を示しています。';missing.append(note);
       unscored.forEach(d=>{
         const row=document.createElement('button');row.type='button';row.className='bench-speed-row';row.dataset.id=d.id;row.setAttribute('aria-pressed',String(d.id===selected));
@@ -69,10 +69,10 @@
     }
     legend.replaceChildren();visible.forEach(d=>{
       const btn=document.createElement('button');btn.type='button';btn.setAttribute('aria-pressed',String(d.id===selected));
-      const swatch=document.createElement('span');swatch.className='bench-swatch';swatch.style.background=colors[d.family];swatch.setAttribute('aria-hidden','true');btn.append(swatch,document.createTextNode(scope.value==='sol'?d.setting:`${d.model} (${d.setting})${d[yf]===null?'：得点未公表':''}`));btn.addEventListener('click',()=>choose(d.id));legend.append(btn);
+      const swatch=document.createElement('span');swatch.className='bench-swatch';swatch.style.background=colors[d.family];swatch.setAttribute('aria-hidden','true');btn.append(swatch,document.createTextNode(scope.value==='sol'?d.setting:`${d.model} (${d.setting})${d[yf]===null?'：得点を参照先で確認できず':''}`));btn.addEventListener('click',()=>choose(d.id));legend.append(btn);
     });
     const d=data.find(d=>d.id===selected);detail.textContent=`${d.model} (${d.setting})：総合指数 ${number(d.index)} ／ HLE-Diamond ${number(d.hle,'%')} ／ 回答開始 ${number(d.wait,'秒')} ／ 出力 ${number(d.speed,' token/s')}`;
-    caption.textContent=`${plotted.length}点を表示${unscored.length?`、得点未公表${unscored.length}条件は速度のみ表示`:''}。`+(field==='wait'?'左ほど回答開始が速い位置です。':'右ほど文章の出力が速い位置です。回答開始前の待ち時間は含みません。');
+    caption.textContent=`${plotted.length}点を表示${unscored.length?`、得点を参照先で確認できない${unscored.length}条件は速度のみ表示`:''}。`+(field==='wait'?'左ほど回答開始が速い位置です。':'右ほど文章の出力が速い位置です。回答開始前の待ち時間は含みません。');
     root.querySelector('#bench-chart-title').textContent=scope.value==='sol'?'同じモデルで、推論量を変えたとき':'一覧表のモデル・シリーズを比較';
   }
   scope.addEventListener('change',draw);metric.addEventListener('change',draw);score.addEventListener('change',draw);
