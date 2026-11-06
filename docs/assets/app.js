@@ -36,6 +36,27 @@
       }
       return;
     }
+    const reviewButton = e.target.closest('[data-review-editor]');
+    if (reviewButton) {
+      const editor = document.getElementById(reviewButton.dataset.reviewEditor);
+      const card = reviewButton.closest('.card');
+      const status = card.querySelector('[data-review-status]');
+      if (!editor || !editor.value.trim()) {
+        if (status) status.textContent = '先に、上の「自分で考えたプロンプト」欄に入力してください。';
+        if (editor) editor.focus();
+        return;
+      }
+      const text = reviewButton.closest('.box').querySelector('pre').textContent.replace(
+        '【ここに自分で考えたプロンプトを貼り付ける】', function () { return editor.value.trim(); });
+      try {
+        if (!await copyText(text)) throw new Error('copy failed');
+        flash(reviewButton, 'コピーしました');
+        if (status) status.textContent = '自分の文章を含むレビュー用プロンプトをコピーしました。新しいAIチャットに貼り付けてください。';
+      } catch (err) {
+        if (status) status.textContent = 'コピーできませんでした。表示中のレビュー用プロンプトを手動でコピーし、レビュー対象を自分の文章に置き換えてください。';
+      }
+      return;
+    }
     const c = e.target.closest('.copy');
     if (c) {
       const pre = c.closest('.box').querySelector('pre');
